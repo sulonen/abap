@@ -7,8 +7,16 @@
 * along with ancillary data via an ALV grid. Users will able to
 * maintain certain ZSHORTAGE fields directly from this grid.
 *----------------------------------------------------------------------*
+<<<<<<< HEAD
+<<<<<<< HEAD
 * Created:       kps 7/29/2014
 * Minor changes: kps 9/8/2014
+=======
+* Created: kps 7/29/2014
+>>>>>>> FETCH_HEAD
+=======
+* Created: kps 7/29/2014
+>>>>>>> FETCH_HEAD
 *
 *----------------------------------------------------------------------*
 
@@ -115,8 +123,18 @@ class lcl_shortage_maintenance definition.
              open_quantity     type zzopen_quantity,
              status            type zzshort_status,
              last_changed_by   type zzlast_change,
+<<<<<<< HEAD
+<<<<<<< HEAD
+             planned_ship_date type char10,
+             planned_ship_time type char8,
+=======
              planned_ship_date type dats,
              planned_ship_time type tims,
+>>>>>>> FETCH_HEAD
+=======
+             planned_ship_date type dats,
+             planned_ship_time type tims,
+>>>>>>> FETCH_HEAD
     end of ty_change_email.
 
 * General
@@ -355,7 +373,15 @@ class lcl_shortage_maintenance implementation.
          and lgnum = <fs_shortages>-warehouse
          and ( lgtyp = '001' or lgtyp = '002' ).
 * Actual Goods Issue
+<<<<<<< HEAD
+<<<<<<< HEAD
+      select single wadat_ist
+=======
       select single wadat
+>>>>>>> FETCH_HEAD
+=======
+      select single wadat
+>>>>>>> FETCH_HEAD
         from likp
         into <fs_shortages>-actual_goods_issue
        where vbeln = <fs_shortages>-delivery .
@@ -800,7 +826,16 @@ into table wa_status.
                from zpckprint
                into wa_change_email
               where warehouse = wa_shortages-warehouse
+<<<<<<< HEAD
+<<<<<<< HEAD
+                and status    = wa_shortages-status
+                and ssi       = wa_shortages-ssi.
+=======
                 and status    = wa_shortages-status.
+>>>>>>> FETCH_HEAD
+=======
+                and status    = wa_shortages-status.
+>>>>>>> FETCH_HEAD
 
       if sy-subrc = 0.
         wa_change_email-warehouse         = wa_shortages-warehouse.
@@ -810,8 +845,19 @@ into table wa_status.
         wa_change_email-open_quantity     = wa_shortages-open_quantity.
         wa_change_email-status            = wa_shortages-status.
         wa_change_email-last_changed_by   = wa_shortages-last_changed_by.
+<<<<<<< HEAD
+<<<<<<< HEAD
+
+        write wa_shortages-planned_ship_date to wa_change_email-planned_ship_date.
+        write wa_shortages-planned_ship_time to wa_change_email-planned_ship_time.
+=======
         wa_change_email-planned_ship_date = wa_shortages-planned_ship_date.
         wa_change_email-planned_ship_time = wa_shortages-planned_ship_time.
+>>>>>>> FETCH_HEAD
+=======
+        wa_change_email-planned_ship_date = wa_shortages-planned_ship_date.
+        wa_change_email-planned_ship_time = wa_shortages-planned_ship_time.
+>>>>>>> FETCH_HEAD
 
         append wa_change_email to t_change_email.
         sort t_change_email by warehouse
@@ -1020,4 +1066,12 @@ module user_command_100 input.
     when others.
       output = save_ok.
   endcase.
+<<<<<<< HEAD
+<<<<<<< HEAD
 endmodule.                 " user_command_100  INPUT
+=======
+endmodule.                 " user_command_100  INPUT
+>>>>>>> FETCH_HEAD
+=======
+endmodule.                 " user_command_100  INPUT
+>>>>>>> FETCH_HEAD
